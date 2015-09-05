@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
   //console.log('hello ', req.user.firstname);
   //console.log(req.isAuthenticated());
   if(req.isAuthenticated()){
-    console.log(req.user.firstname + ' is signed in');
+    console.log(req.user.firstname + ' is signed in. In jade branch');
     res.sendFile(path.resolve(__dirname, '../views/users.html'));
   }
   else{
