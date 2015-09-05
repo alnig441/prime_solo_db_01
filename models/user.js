@@ -5,7 +5,10 @@ var mongoose = require('mongoose'),
 
 var UserSchema = new Schema({
     username: { type: String, required: true, index: {unique: true}},
-    password: { type: String, required: true}
+    password: { type: String, required: true},
+    firstname: { type: String, required: true},
+    lastname: { type: String, required: true },
+    email: { type: String, required: true}
 });
 
 UserSchema.pre('save', function(next){
@@ -30,8 +33,14 @@ UserSchema.pre('save', function(next){
 });
 
 UserSchema.methods.comparePassword = function(candidatePassword, cb){
+    console.log('in comparePassword comparing pw: ', candidatePassword);
     bcrypt.compare(candidatePassword, this.password, function(err, isMatch){
-        if(err) return cb(err);
+        console.log('in bcrypt.compare comparing ' + candidatePassword + ' to ' + this.password);
+        if(err) {
+            console.log('incorrect password');
+            return cb(err);
+        }
+        //console.log('password is a match');
         cb(null, isMatch);
     });
 };

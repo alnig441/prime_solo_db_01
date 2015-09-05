@@ -10,8 +10,9 @@ router.get('/', function(req, res, next) {
 
 router.post('/', passport.authenticate('local',{
   successRedirect: '/users',
-  failureRedirect: '/'
-  })
+  failureRedirect: '/',
+
+    })
 );
 
 module.exports = router;

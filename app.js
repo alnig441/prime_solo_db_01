@@ -8,6 +8,7 @@ var passport = require('passport');
 var session = require('express-session');
 var localStrategy = require('passport-local').Strategy;
 var mongoose = require('mongoose');
+var flash = require('connect-flash');
 
 var User = require('./models/user');
 var routes = require('./routes/index');
@@ -38,41 +39,50 @@ app.use(session({
   saveUnitialized: false,
   cookie: { maxAge: 60000, secure: false }
 }));
+app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
+passport.use('local', new localStrategy({
+          passReqToCallback: true,
+          usernameField: 'username'
+        },
+        function(req, username, password, done) {
+          User.findOne({username: username}, function (err, user) {
+            if (err) throw err;
+            if (!user) {
+              console.log('user does not exist', done);
+              return done(null, false, {message: 'Incorrect username and password.'});
+            }
+            //test a matching password
+            user.comparePassword(password, function (err, isMatch) {
+              if (err) {
+                console.log(err);
+                throw err;
+              }
+              if (isMatch) {
+                console.log('user and password are a match');
+                return done(null, user);
+              }else
+                //console.log(done);
+                done(null, false, {message: 'Incorrect username and password.'});
+            });
+          });
+        }));
+
+
 passport.serializeUser(function(user, done){
+  //console.log('serializing ', user)
   done(null, user.id);
 });
 
 passport.deserializeUser(function(id, done){
+  //console.log("deserializing ", id);
   User.findById(id, function(err, user){
     if(err) done(err);
     done(null, user);
   });
 });
-
-passport.use('local', new localStrategy({
-  passReqToCallback: true,
-  usernameField: 'username'
-},
-function(req, username, password, done) {
-  User.findOne({username: username}, function (err, user) {
-    if (err) throw err;
-    if (!user)
-      return done(null, false, {message: 'Incorrect username and password.'});
-  });
-  //test a matching password
-  user.comparePassword(password, function (err, isMatch) {
-    if (err) throw err;
-    if (isMatch)
-      return done(null, user);
-    else
-      done(null, false, {message: 'Incorrect username and password.'});
-    });
-  })
-);
-
 
 
 
