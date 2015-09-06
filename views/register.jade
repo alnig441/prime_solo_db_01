@@ -1,3 +1,37 @@
-extends layout
+doctype html
+html
+    head
+        title registration page
+        title= title
+        link(rel="stylesheet", href='/javascripts/bootstrap.min.css')
+        link(rel='stylesheet', href='/stylesheets/style.css')
+    body
+        div#navbar(class="navbar-collapse collapse")
+            ul(class="nav navbar-nav")
+                li(class="active")
+                    a(href="/") Sign In
+                li
+                    a(href="#") Register
+                li
+                    a(href="users") Users
+
+        form(action="/register" method="post")
+            div
+                label(for="firstname") Name:
+                input#firstname(type="text" name="firstname")
+            div
+                label(for="lastname") Surname:
+                input#lastname(type="text" name="lastname")
+            div
+                label(for="email") Mail:
+                input#email(type="text" name="email")
+            div
+                label(for="username") Username:
+                input(type="text" name="username")
+            div
+                label(for="password") Password:
+                input#password(type="password" name="password")
+            div
+                input(type="submit" value"register")
 
 

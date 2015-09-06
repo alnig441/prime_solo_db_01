@@ -5,7 +5,7 @@ var path = require('path');
 var Users = require('../models/user');
 
 router.get('/', function(req, res, next){
-    res.sendFile(path.resolve(__dirname, '../views/register.html'));
+    res.render(path.resolve(__dirname, '../views/register.jade'));
 });
 
 router.post('/', function(req, res, next){

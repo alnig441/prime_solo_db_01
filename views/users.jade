@@ -1,3 +1,26 @@
-//
-   Created by allannielsen on 9/5/15.
+doctype html
+head
+   title user page
+   title= title
+   link(rel="stylesheet", href='/javascripts/bootstrap.min.css')
+   link(rel='stylesheet', href='/stylesheets/style.css')
 
+body
+   div#navbar(class="navbar-collapse collapse")
+      ul(class="nav navbar-nav")
+         li(class="active")
+            a(href="/") Sign In
+         li
+            a(href="register") Register
+         li
+            a(href="#") Users
+         li(class="dropdown")
+            a(href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false") Dropdown
+               span(class="caret")
+      ul(class="dropdown-menu")
+         li
+            a(href="#") Display
+         li
+            a(href="#") Update
+         li
+            a(href="#") Remove

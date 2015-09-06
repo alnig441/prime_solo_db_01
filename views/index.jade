@@ -1,16 +1,22 @@
 extends layout
 
 block content
-  h1= Login Page
-    form
+   div#navbar(class="navbar-collapse collapse")
+      ul(class="nav navbar-nav")
+         li(class="active")
+            a(href="/") Sign In
+         li
+            a(href="register") Register
+         li
+            a(href="users") Users
 
-        label
-        input
-
-        label
-        inut
-
-        input
-        a
-
-
+   form(action="/" method="post")
+      div
+         label(for="username") Username:
+         input#username(type="text" name="username")
+      div
+         label(for="password") Password:
+         input#password(type="password" name="password")
+      div
+         input(type="submit" value="login")
+         //a(href="/register") Register
