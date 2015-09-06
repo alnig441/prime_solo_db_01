@@ -17,7 +17,7 @@ var register = require('./routes/register');
 
 var app = express();
 
-var mongoURI = 'mongodb://localhost:27017/prime_example_passport';
+var mongoURI = 'mongodb://localhost:27017/prime_solo_db_01';
 var MongoDB = mongoose.connect(mongoURI).connection;
 
 
@@ -51,8 +51,12 @@ passport.use('local', new localStrategy({
           User.findOne({username: username}, function (err, user) {
             if (err) throw err;
             if (!user) {
+              var message = req.flash('message', 'Username does not exist');
               console.log('user does not exist', done);
-              return done(null, false, {message: 'Incorrect username and password.'});
+              //return done(null, false, {message: 'Incorrect username and password.'});
+              return done(null, false, message);
+
+
             }
             //test a matching password
             user.comparePassword(password, function (err, isMatch) {
@@ -62,10 +66,15 @@ passport.use('local', new localStrategy({
               }
               if (isMatch) {
                 console.log('user and password are a match');
-                return done(null, user);
-              }else
-                //console.log(done);
-                done(null, false, {message: 'Incorrect username and password.'});
+                var message = req.flash('message', 'Welcome '+  user.firstname + ', you are now signed in');
+                return done(null, user, message);
+              }else{
+                var message = req.flash('message', 'Incorrect passowrd');
+                //done(null, false, {message: 'Incorrect username and password.'});
+                done(null, false, message);
+              }
+
+
             });
           });
         }));

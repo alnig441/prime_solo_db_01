@@ -2,8 +2,14 @@ doctype html
 html
   head
     title Log in page
+    script(type='text/javascript' src='javascripts/jquery-1.11.3.min.js')
+    script(type='text/javascript' src='javascripts/bootstrap.min.js')
+    script(type='text/javascript' src='javascripts/jq_app.js')
     link(rel="stylesheet", href='/javascripts/bootstrap.min.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
     block content
+      //- if (flash && flash.message && flash.message.length > 0)
+      //  p.alert.alert-success= flash.message
+
 

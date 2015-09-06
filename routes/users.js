@@ -1,19 +1,19 @@
 var express = require('express');
-//var router = require('router');
 var router = express.Router();
 var path = require('path');
+var Users = require('../models/user');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  //console.log('hello ', req.user.firstname);
-  //console.log(req.isAuthenticated());
+  console.log('in users route ', req.session.flash);
   if(req.isAuthenticated()){
-    console.log(req.user.firstname + ' is signed in. In jade branch');
-    res.render(path.resolve(__dirname, '../views/users.jade'));
+    res.render(path.resolve(__dirname, '../views/users.jade'),{flash: {message: req.flash('message')}});
+    //res.render(path.resolve(__dirname, '../views/users.jade'));
   }
   else{
-    console.log('users route redirecting to sign-in page');
-    res.render(path.resolve(__dirname, '../views/index.jade'));
+    console.log('in users route, fail :', req.session.flash);
+    //res.render(path.resolve(__dirname, '../views/index.jade'), {flash: {message: req.flash('message')}});
+    res.render(path.resolve(__dirname, '../views/index.jade'),{flash: {message: req.flash('message')}});
   }
 
 });

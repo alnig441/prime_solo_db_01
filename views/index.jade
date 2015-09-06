@@ -9,7 +9,6 @@ block content
             a(href="register") Register
          li
             a(href="users") Users
-
    form(action="/" method="post")
       div
          label(for="username") Username:
@@ -19,4 +18,5 @@ block content
          input#password(type="password" name="password")
       div
          input(type="submit" value="login")
-         //a(href="/register") Register
+   - if (flash && flash.message && flash.message.length > 0)
+      p.alert.alert-success= flash.message

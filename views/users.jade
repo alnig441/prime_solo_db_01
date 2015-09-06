@@ -2,8 +2,12 @@ doctype html
 head
    title user page
    title= title
+   script(type='text/javascript' src='javascripts/jquery-1.11.3.min.js')
+   script(type='text/javascript' src='javascripts/bootstrap.min.js')
+   script(type='text/javascript' src='javascripts/jq_app.js')
    link(rel="stylesheet", href='/javascripts/bootstrap.min.css')
    link(rel='stylesheet', href='/stylesheets/style.css')
+
 
 body
    div#navbar(class="navbar-collapse collapse")
@@ -17,10 +21,12 @@ body
          li(class="dropdown")
             a(href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false") Dropdown
                span(class="caret")
-      ul(class="dropdown-menu")
-         li
-            a(href="#") Display
-         li
-            a(href="#") Update
-         li
-            a(href="#") Remove
+            ul(class="dropdown-menu")
+               li
+                  a#display(href="#") Display
+               li
+                  a#update(href="#") Update
+               li
+                  a#remove(href="#") Remove
+   - if (flash && flash.message && flash.message.length > 0)
+   p.alert.alert-success= flash.message
