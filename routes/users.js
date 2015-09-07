@@ -9,11 +9,10 @@ router.get('/', function(req, res, next) {
   console.log(req.isAuthenticated());
   if(req.isAuthenticated()){
     res.render(path.resolve(__dirname, '../views/users.jade'),{flash: {message: req.flash('message')}});
-    //res.render(path.resolve(__dirname, '../views/users.jade'));
   }
   else{
+    var message = req.flash('message', 'Please log in');
     console.log('in users route, fail :', req.session.flash);
-    //res.render(path.resolve(__dirname, '../views/index.jade'), {flash: {message: req.flash('message')}});
     res.render(path.resolve(__dirname, '../views/index.jade'),{flash: {message: req.flash('message')}});
   }
 

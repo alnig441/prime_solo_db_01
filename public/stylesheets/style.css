@@ -30,3 +30,10 @@ label {
   width: 150px;
   border-radius: 4px;
 }
+
+td {
+  width: 150px;
+}
+table{
+  margin: 5px;
+}

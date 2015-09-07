@@ -14,8 +14,8 @@ router.get('/', function(req, res, next) {
                 next(err);
             } else {
                 console.log('In display router returning data: ', users);
-                //res.render('users', { users: users});
-                res.send({user:users});
+                //res.send({user:users});
+                res.send(users);
             }
         });
     };
