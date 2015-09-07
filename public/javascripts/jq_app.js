@@ -6,11 +6,13 @@ $('#display').on('click', function() {
         $.ajax({
             type: 'GET',
             dataType: 'json',
-            url: '/users'
+            url: '/display'
         }).always(function () {
             console.log('Ajax call complete');
         }).done(function(data){
-            console.log(data);
+            console.log('Ajax call done with data: ', data.user[0].firstname);
+
+            //res.render('users', {users: data});
         }).fail(function(jqXHR, textStatus, errorThrown){
             console.log('AJAX call failed with ', textStatus, errorThrown);
         });

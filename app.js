@@ -14,6 +14,7 @@ var User = require('./models/user');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var register = require('./routes/register');
+var display = require('./routes/display');
 
 var app = express();
 
@@ -51,7 +52,7 @@ passport.use('local', new localStrategy({
           User.findOne({username: username}, function (err, user) {
             if (err) throw err;
             if (!user) {
-              var message = req.flash('message', 'Username does not exist');
+              var message = req.flash('message', 'Entered username is incorrect or does not exist');
               console.log('user does not exist', done);
               //return done(null, false, {message: 'Incorrect username and password.'});
               return done(null, false, message);
@@ -65,7 +66,6 @@ passport.use('local', new localStrategy({
                 throw err;
               }
               if (isMatch) {
-                console.log('user and password are a match');
                 var message = req.flash('message', 'Welcome '+  user.firstname + ', you are now signed in');
                 return done(null, user, message);
               }else{
@@ -107,6 +107,7 @@ MongoDB.once('open', function I(){
 app.use('/', routes);
 app.use('/users', users);
 app.use('/register', register);
+app.use('/display', display);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

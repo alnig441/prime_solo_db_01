@@ -9,4 +9,24 @@ a {
 
 label {
   width: 150px;
+  padding: 0 10px;
+}
+
+.alert {
+  width: 300px;
+
+}
+
+#navbar {
+  padding: 0;
+}
+
+.nav li{
+  width: 100px;
+  text-align: left;
+}
+
+.submission{
+  width: 150px;
+  border-radius: 4px;
 }
