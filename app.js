@@ -38,7 +38,7 @@ app.use(session({
   key: 'user',
   resave: 'true',
   saveUnitialized: false,
-  cookie: { maxAge: 60000, secure: false }
+  cookie: { maxAge: 6000, secure: false }
 }));
 app.use(flash());
 app.use(passport.initialize());
