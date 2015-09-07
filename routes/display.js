@@ -14,8 +14,17 @@ router.get('/', function(req, res, next) {
                 next(err);
             } else {
                 console.log('In display router returning data: ', users);
-                //res.send({user:users});
-                res.send(users);
+                var usersArray = [];
+                users.forEach(function(elem, index, array){
+                    var user = {};
+                    user.username = elem.username;
+                    user.firstname = elem.firstname;
+                    user.lastname = elem.lastname;
+                    user.email = elem.email;
+                    usersArray.push(user);
+                });
+                console.log(usersArray);
+                res.send(usersArray);
             }
         });
     };

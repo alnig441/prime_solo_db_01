@@ -10,7 +10,7 @@ $('#display').on('click', function() {
         }).always(function () {
             console.log('Ajax call complete');
         }).done(function(data) {
-            console.log('Ajax call done with data: ', data.length);
+            console.log('Ajax call done with data: ', data);
 
             console.log($('#printUsers').children().length);
             if ($('#printUsers').children().length == 0) {
