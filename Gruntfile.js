@@ -26,7 +26,7 @@ module.exports = function(grunt){
         uglify: {
             js: {
                 files: {
-                    'combined.js': [ 'public/assets/combined.js' ]
+                    'public/assets/combined.js': [ 'public/assets/combined.js' ]
                 }
             }
         },
