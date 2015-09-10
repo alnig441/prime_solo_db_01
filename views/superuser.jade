@@ -1,22 +1,26 @@
 doctype html
 head
-   title user page
+   title superuser page
    title= title
    script(type='text/javascript' src='javascripts/jquery-1.11.3.min.js')
    script(type='text/javascript' src='javascripts/bootstrap.min.js')
    script(type='text/javascript' src='assets/jq_app.js')
    link(rel="stylesheet", href='/javascripts/bootstrap.min.css')
    link(rel='stylesheet', href='/stylesheets/combined.min.css')
-
-   body
+body
    div#navbar(class="navbar-collapse collapse")
       ul(class="nav navbar-nav")
-         li#usrDisp.display(class="active")
+         li#admDisp.display(class="active")
             a(href="#") Display
-         li#usrUpd.update
+         li#admUpd.update
             a(href="#") Update
+         li#admRem.remove
+            a(href="#") Remove
+         li#admReg.registerAdmin
+            a(href="admin") Register
          li.logout
-            a(href="users/logout") Logout
+            a(href="/users/logout") Logout
+
    - if (flash && flash.message && flash.message.length > 0)
    p.alert.alert-success= flash.message
    #printUsers

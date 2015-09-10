@@ -21,6 +21,7 @@ router.get('/', function(req, res, next) {
                     user.firstname = elem.firstname;
                     user.lastname = elem.lastname;
                     user.email = elem.email;
+                    user.id = elem._id;
                     usersArray.push(user);
                 });
                 console.log(usersArray);
