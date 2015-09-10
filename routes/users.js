@@ -12,10 +12,10 @@ router.get('/', function(req, res, next) {
   if(req.isAuthenticated() && req.user.admin) {
     res.render(path.resolve(__dirname, '../views/superuser.jade'),{flash: {message: req.flash('message')}});
   }
-  else if((req.isAuthenticated())&& (!req.user.admin)){
+  else if((req.isAuthenticated()) && (!req.user.admin)){
     res.render(path.resolve(__dirname, '../views/users.jade'), {flash: {message: req.flash('message')}});
   }
-  else{
+  else if(!req.isAuthenticated()){
     var message = req.flash('message', 'Please log in');
     console.log('in users route, fail :', req.session.flash);
     res.render(path.resolve(__dirname, '../views/index.jade'),{flash: {message: req.flash('message')}});

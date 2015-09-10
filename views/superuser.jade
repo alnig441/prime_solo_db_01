@@ -10,12 +10,24 @@ head
 body
    div#navbar(class="navbar-collapse collapse")
       ul(class="nav navbar-nav")
-         li#admDisp.display(class="active")
-            a(href="#") Display
-         li#admUpd.update
-            a(href="#") Update
-         li#admRem.remove
-            a(href="#") Remove
+         li.dropdown
+            a.dropdown-toggle(href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false") Admin
+               span.caret
+            ul.dropdown-menu
+               li#admDisp.display
+                  a(href="#") Display
+               li#admUpd.update
+                  a(href="#") Update
+               li#admRem
+                  a(href="#") Remove Selected
+               li#admRemAll
+                  a(href="#") Remove all
+         //li#admDisp.display(class="active")
+         //   a(href="#") Display
+         //li#admUpd.update
+         //   a(href="#") Update
+         //li#admRem.remove
+         //   a(href="#") Remove
          li#admReg.registerAdmin
             a(href="admin") Register
          li.logout
@@ -23,4 +35,5 @@ body
 
    - if (flash && flash.message && flash.message.length > 0)
    p.alert.alert-success= flash.message
+
    #printUsers
